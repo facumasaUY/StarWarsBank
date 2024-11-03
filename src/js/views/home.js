@@ -30,7 +30,7 @@ fetch("https://www.swapi.tech/api/vehicles")
 
 	return <div className="text-center mt-5">
 		<h1>Warriors</h1>
-		<div className="d-flex flex-row overflow">
+		<div className="d-flex flex-row overflow-auto">
 		{
 			people.map((item,index)=>{
 				return (
@@ -40,7 +40,7 @@ fetch("https://www.swapi.tech/api/vehicles")
 		}
 		</div>
 		<h1>Planets</h1>
-		<div className="d-flex flex-row overflow">
+		<div className="d-flex flex-row overflow-auto">
 		{
 			planet.map((item,index)=>{
 				return (
@@ -50,7 +50,7 @@ fetch("https://www.swapi.tech/api/vehicles")
 		}
 		</div>
 		<h1>Vehicles</h1>
-		<div className="d-flex flex-row overflow">
+		<div className="d-flex flex-row overflow-auto">
 		{
 			vehicle.map((item,index)=>{
 				return (
