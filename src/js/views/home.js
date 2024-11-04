@@ -12,20 +12,18 @@ export const Home = () => {
 	const [vehicle, setVehicle] = useState([])
 
 	const loadPeopleWithDetails = async () => {
-		const newPeopleList = []
 		const response = await fetch("https://www.swapi.tech/api/people")
 		const data = await response.json()
 
-		for (let people of data.results) {
+		const peopleDetailsPromises = data.results.map(async (people) => {
 			const resPeople = await fetch(people.url);
 			const peopleDetails = await resPeople.json();
+			return peopleDetails.result;
+		});
 
-			console.log(peopleDetails)
-			newPeopleList.push(peopleDetails.result);
-		}
-
+		const newPeopleList = await Promise.all(peopleDetailsPromises); // <--- This is the magic line
 		setPeople(newPeopleList);
-	}
+	};
 
 	useEffect(() => {
 
