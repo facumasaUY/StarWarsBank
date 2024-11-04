@@ -12,14 +12,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+
+			characters: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			loadCharacters: async (props) => {
+				const charactersUrl ="https://starwars-visualguide.com/assets/img/characters/"+props.uid+".jpg"
+				const res = await fetch(charactersUrl);
+				const data = await res.json()
+				setStore({ characters: data.results})
+       
+
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/

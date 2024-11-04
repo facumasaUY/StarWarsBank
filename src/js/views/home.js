@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
+import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import CardPeople from "../component/cardPeople";
-import CardPlanets from "./cardPlanets";
-import CardVehicles from "./cardVehicle"
+import CardPlanets from "../component/cardPlanets";
+import CardVehicles from "../component/cardVehicle"
 
 export const Home = () => {
+
 	const [people, setPeople] = useState([])
     const [planet, setPlanet] = useState([])
 	const [vehicle, setVehicle] = useState([])

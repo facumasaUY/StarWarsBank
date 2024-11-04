@@ -5,8 +5,10 @@ const CardPeople = (props) => {
         <div className="card" style={{width: "18rem", flex: "none", margin:"10px"}}>
   <img src={"https://starwars-visualguide.com/assets/img/characters/"+props.uid+".jpg"} class="card-img-top" alt="..."/>
   <div className="card-body">
-    <h4 className="card-title">{props.name}</h4>
-    <p className="card-text"></p>
+    <h4 className="card-title">{props.name}</h4>;
+    <p className="card-text">
+
+    </p>
   </div>
 </div>
     )
