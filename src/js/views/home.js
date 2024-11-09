@@ -1,77 +1,75 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import CardPeople from "../component/cardPeople";
 import CardPlanets from "../component/cardPlanets";
-import CardVehicles from "../component/cardVehicle"
+import CardVehicles from "../component/cardVehicle";
 
 export const Home = () => {
+  const { store, actions } = useContext(Context);
+  const [favourites, setFavourites] = useState([]);
+  
+  const addFavourite = (name) => {
+    setFavourites((prevFavourites) => [...prevFavourites, name]);
+  };
 
-	const {store, actions} = useContext(Context)
-	
-	useEffect(() => {
+  useEffect(() => {
+    actions.loadCharacters();
+    actions.loadPlanets();
+    actions.loadVehicles();
+  }, [actions]);
 
-		actions.loadCharacters()
-		actions.loadPlanets()
-		actions.loadVehicles()
-	}, [])
+  return (
+    <div className="text-center mt-5">
+      <h1>Characters</h1>
+      <div className="d-flex flex-row overflow-auto">
+        {store.characters.length === 0 && (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
 
-	return <div className="text-center mt-5">
+        {store.characters.map((item) => {
+          return (
+            <CardPeople
+              key={item.uid}
+              item={item.properties || {}}
+              uid={item.uid}
+              addFavourite={addFavourite}
+            />
+          );
+        })}
+      </div>
 
-		<h1>Characters</h1>
-		<div className="d-flex flex-row overflow-auto">
+      <h1>Planets</h1>
+      <div className="d-flex flex-row overflow-auto">
+        {store.planets.length === 0 && (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
 
-			{
-				store.characters.length == 0 && <div className="spinner-border" role="status">
-					<span className="visually-hidden">Loading...</span>
-				</div>
-			}
+        {store.planets.map((item) => {
+          return (
+            <CardPlanets key={item.uid} item={item.properties || {}} uid={item.uid} />
+          );
+        })}
+      </div>
 
-			{
-				store.characters.map((item, index) => {
-					return (
-						<CardPeople key={index} item={item.properties || {}} uid={item.uid}> </CardPeople>
-					)
-				})
-			}
-		</div>
+      <h1>Vehicles</h1>
+      <div className="d-flex flex-row overflow-auto">
+        {store.vehicles.length === 0 && (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
 
-		<h1>Planets</h1>
-		<div className="d-flex flex-row overflow-auto">
-
-			{
-				store.planets.length == 0 && <div className="spinner-border" role="status">
-					<span className="visually-hidden">Loading...</span>
-				</div>
-			}
-
-			{
-				store.planets.map((item, index) => {
-					return (
-						<CardPlanets key={index} item={item.properties || {}} uid={item.uid}> </CardPlanets>
-					)
-				})
-			}
-		</div>
-
-		<h1>Vehicles</h1>
-		<div className="d-flex flex-row overflow-auto">
-
-			{
-			    store.vehicles.length == 0 && <div className="spinner-border" role="status">
-				    <span className="visually-hidden">Loading...</span>
-				</div>
-			}
-
-			{
-				store.vehicles.map((item, index) => {
-					return (
-						<CardVehicles key={index} item={item.properties} uid={item.uid}></CardVehicles>
-					)
-				})
-			}
-		</div>
-
-	</div>
-
+        {store.vehicles.map((item) => {
+          return (
+            <CardVehicles key={item.uid} item={item.properties} uid={item.uid} />
+          );
+        })}
+      </div>
+    </div>
+  );
 };
