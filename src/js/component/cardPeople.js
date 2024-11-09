@@ -7,15 +7,18 @@ const CardPeople = (props) => {
       <div className="card-body">
         <h4 className="card-title">{props.item.name}</h4>
         <p className="card-text">
-          {
-            props.item.gender
-          }
+          Gender: {props.item.gender}
+        </p>
+        <p>
+          Hair Color: {props.item.hair_color}
         </p>
         <p className="card-text">
-          {
-            props.item.eye_color
-          }
+          Eye color: {props.item.eye_color}
         </p>
+        <div className="d-flex justify-content-between">
+        <button className="btn btn-outline-primary">Learn more!</button>
+        <button className="btn btn-outline-warning"><i class="fa-regular fa-heart"/></button>
+        </div>
       </div>
     </div>
   )

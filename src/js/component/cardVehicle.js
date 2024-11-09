@@ -5,7 +5,13 @@ const CardVehicle = (props) => {
         <div className="card" style={{width: "18rem", flex: "none", margin:"10px"}}>
   <img src={"https://starwars-visualguide.com/assets/img/vehicles/"+props.uid+".jpg"} class="card-img-top" alt="..."/>
   <div className="card-body">
-    <h5 className="card-title">{props.name}</h5>
+    <h5 className="card-title">{props.item.name}</h5>
+    <p>
+      Model: {props.item.model}
+    </p>
+    <p>
+      Passengers: {props.item.passengers}
+    </p>
   </div>
 </div>
 )
