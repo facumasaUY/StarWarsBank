@@ -1,3 +1,5 @@
+import { element } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -17,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			vehicles: [],
+			misFavoritos: [],
 		},
 
 		actions: {
@@ -63,6 +66,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const vehicles = await Promise.all(vehiclesDetailsPromises);
 				setStore({vehicles});
+			},
+
+			addFavourtive: (item) => {
+				if (getStore().misFavoritos.includes(item)){ //Si ya existe, lo borra.
+					let aux = []
+					aux = getStore().misFavoritos.filter((elemento)=>elemento!=item)
+					setStore({misFavoritos: aux})
+				} else{
+					setStore({misFavoritos:[...getStore().misFavoritos, item]})
+				}
 			},
 
 			changeColor: (index, color) => {
