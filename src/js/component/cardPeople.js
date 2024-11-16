@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../store/appContext";
 
 const CardPeople = ({ item, uid, addFavourite }) => {
+
+  const { store, actions } = useContext(Context);
+
   // Manejador de clic para agregar a favoritos
   const handleLikeClick = () => {
-    addFavourite(item.name); // Llamar a la función addFavourite con el nombre del personaje
+   actions.addFavourite(item.name); // Llamar a la función addFavourite con el nombre del personaje
   };
 
   return (

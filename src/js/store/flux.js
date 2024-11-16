@@ -68,15 +68,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({vehicles});
 			},
 
-			addFavourtive: (item) => {
+			addFavourite: (item) => {
 				if (getStore().misFavoritos.includes(item)){ //Si ya existe, lo borra.
+					console.log(misFavoritos)
 					let aux = []
 					aux = getStore().misFavoritos.filter((elemento)=>elemento!=item)
 					setStore({misFavoritos: aux})
 				} else{
+					console.log(misFavoritos)
 					setStore({misFavoritos:[...getStore().misFavoritos, item]})
 				}
 			},
+
 
 			changeColor: (index, color) => {
 				//get the store
