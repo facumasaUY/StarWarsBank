@@ -68,11 +68,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({vehicles});
 			},
 
+            removeItem: (item) => {
+				let aux = getStore().misFavoritos.filter((elemento)=>elemento!=item)
+					setStore({misFavoritos: aux})
+			},
+
 			addFavourite: (item) => {
 				if (getStore().misFavoritos.includes(item)){ //Si ya existe, lo borra.
-					let aux = []
-					aux = getStore().misFavoritos.filter((elemento)=>elemento!=item)
-					setStore({misFavoritos: aux})
+					getActions().removeItem(item);
 				} else{
 					
 					setStore({misFavoritos:[...getStore().misFavoritos, item]})
@@ -80,7 +83,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
             
 			showFavourite: () =>{
-                return getStore().misFavoritos
+                return getStore().misFavoritos;
+			},
+
+			deleteFavourite: (item) =>{
+				if (getStore().misFavoritos.includes(item)){				
+					getActions().removeItem(item)};			
 			},
 
 			changeColor: (index, color) => {
