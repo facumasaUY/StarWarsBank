@@ -1,6 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../store/appContext";
 
-export const Navbar = ({ favourites = [] }) => { // Default to empty array if favourites is undefined
+
+
+export const Navbar = () => { // Default to empty array if favourites is undefined
+  
+  const { store, actions } = useContext(Context);
+
+  let favourites = actions.showFavourite()
+
   return (
     <nav
       className="navbar mb-3 d-flex justify-content-between"

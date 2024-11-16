@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import { Context } from "../store/appContext";
 
-const CardPeople = ({ item, uid, addFavourite }) => {
+const CardPeople = ({ item, uid}) => {
 
   const { store, actions } = useContext(Context);
 
