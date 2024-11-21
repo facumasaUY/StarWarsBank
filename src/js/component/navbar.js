@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 
 
@@ -8,6 +9,10 @@ export const Navbar = () => { // Default to empty array if favourites is undefin
   const { store, actions } = useContext(Context);
 
   let favourites = actions.showFavourite()
+
+  const handleDeleteFavourite = (favourite) => {
+    actions.deleteFavourite(favourite); // Llamar a la función addFavourite con el nombre del personaje
+   };
 
   return (
     <nav
@@ -20,12 +25,14 @@ export const Navbar = () => { // Default to empty array if favourites is undefin
       }}
     >
       <div className="d-flex align-items-center">
+        <Link to="/">
         <img
           className="ms-5"
           src="https://pngimg.com/uploads/star_wars_logo/star_wars_logo_PNG37.png"
           alt="Star Wars Logo"
           style={{ height: "60px", width: "auto" }}
         />
+        </Link>
       </div>
       <div className="d-flex align-items-center">
         <div className="dropdown">
@@ -36,7 +43,7 @@ export const Navbar = () => { // Default to empty array if favourites is undefin
             {favourites.length > 0 ? (
               favourites.map((favourite, index) => (
                 <li key={index} className="dropdown-item">
-                  {favourite}
+                  {favourite} <button className="btn" onClick={()=>handleDeleteFavourite(favourite)}><i class="fa-solid fa-trash-can"></i></button>
                 </li>
               ))
             ) : (

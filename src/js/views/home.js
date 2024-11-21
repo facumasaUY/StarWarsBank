@@ -21,7 +21,7 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
-      <h1>Characters</h1>
+      <h1 className="text-start text-danger">Characters</h1>
       <div className="d-flex flex-row overflow-auto">
         {store.characters.length === 0 && (
           <div className="spinner-border" role="status">
@@ -41,7 +41,7 @@ export const Home = () => {
         })}
       </div>
 
-      <h1>Planets</h1>
+      <h1 className="text-start text-danger">Planets</h1>
       <div className="d-flex flex-row overflow-auto">
         {store.planets.length === 0 && (
           <div className="spinner-border" role="status">
@@ -56,7 +56,7 @@ export const Home = () => {
         })}
       </div>
 
-      <h1>Vehicles</h1>
+      <h1 className="text-start text-danger">Vehicles</h1>
       <div className="d-flex flex-row overflow-auto">
         {store.vehicles.length === 0 && (
           <div className="spinner-border" role="status">

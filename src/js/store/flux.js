@@ -20,6 +20,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: [],
 			vehicles: [],
 			misFavoritos: [],
+			person:{},
+			planet:{},
+			vehicle:{},
 		},
 
 		actions: {
@@ -89,6 +92,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 			deleteFavourite: (item) =>{
 				if (getStore().misFavoritos.includes(item)){				
 					getActions().removeItem(item)};			
+			},
+
+			getDetaiCharacter: async(id) =>{
+				try {
+					const res = await fetch("https://www.swapi.tech/api/people/"+id)
+					const data = await res.json()
+					console.log(data.result)
+					setStore({person:data.result})
+				} catch (error) {
+					console.log(error)
+					return false
+				}
+			},
+
+			getDetailPlanet: async(id) =>{
+				try {
+					const res = await fetch("https://www.swapi.tech/api/planets/"+id)
+					const data = await res.json()
+					console.log(data.result)
+					setStore({planet:data.result})
+				} catch (error) {
+					console.log(error)
+					return false
+				}
+			},
+
+			getDetailVehicle: async(id) =>{
+				try {
+					const res = await fetch("https://www.swapi.tech/api/vehicles/"+id)
+					const data = await res.json()
+					console.log(data.result)
+					setStore({vehicle:data.result})
+				} catch (error) {
+					console.log(error)
+					return false
+				}
 			},
 
 			changeColor: (index, color) => {
